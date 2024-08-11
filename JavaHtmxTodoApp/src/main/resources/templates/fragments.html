@@ -1,0 +1,140 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  lang="en"
+>
+  <!--/*@thymesVar id="item" type="com.infosupport.stateoftheweb2024.htmxexample.models.TodoItem"*/-->
+  <li
+    th:fragment="todoItem(item)"
+    th:classappend="${item.completed?'completed':''}"
+    th:id="|list-item-${item.id}|"
+  >
+    <div class="view">
+      <input
+        th:id="|toggle-checkbox-${item.id}|"
+        class="toggle"
+        type="checkbox"
+        th:attrappend="checked=${item.completed?'true':null}"
+        th:attr="hx-put=@{/{id}/toggle(id=${item.id})},hx-target=|#list-item-${item.id}|"
+        hx-trigger="click"
+        hx-swap="outerHTML"
+      />
+      <label
+        th:text="${item.title}"
+        hx-on:dblclick="this.closest('li').classList.add('editing'); this.closest('li').querySelector('.edit').focus();"
+      ></label>
+      <button
+        class="destroy"
+        th:attr="hx-delete=@{/{id}(id=${item.id})},hx-target=|#list-item-${item.id}|"
+        hx-trigger="click"
+        hx-swap="delete"
+      ></button>
+    </div>
+    <form th:attr="hx-patch=@{/{id}(id=${item.id})},hx-target=|#list-item-${item.id}|" hx-swap="outerHTML">
+      <input name="title" class="edit" th:value="${item.title}" />
+    </form>
+  </li>
+
+  <!--/*@thymesVar id="todoItems" type="java.util.List<com.infosupport.stateoftheweb2024.htmxexample.models.TodoItem>"*/-->
+  <ul
+    th:fragment="todoItems(items)"
+    id="todo-list"
+    class="todo-list"
+    th:remove="all-but-first"
+  >
+    <li
+      th:insert="~{fragments :: todoItem(${item})}"
+      th:each="item : ${items}"
+      th:remove="tag"
+    ></li>
+    <!-- These are here just to show the structure of the list items -->
+    <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+    <li class="completed">
+      <div class="view">
+        <input class="toggle" type="checkbox" checked />
+        <label>Taste JavaScript</label>
+        <button class="destroy"></button>
+      </div>
+      <input class="edit" value="Create a TodoMVC template" />
+    </li>
+    <li>
+      <div class="view">
+        <input class="toggle" type="checkbox" />
+        <label>Buy a unicorn</label>
+        <button class="destroy"></button>
+      </div>
+      <input class="edit" value="Rule the web" />
+    </li>
+  </ul>
+
+  <footer th:fragment="footer" id="main-footer" class="footer">
+    <span th:replace="fragments :: active-items-fragment"> </span>
+    <ul th:replace="fragments :: filters"></ul>
+    <!-- Hidden if no completed items are left ↓ -->
+    <button
+      hx-delete="/completed"
+      hx-target="#todo-list"
+      class="clear-completed"
+    >
+      Clear completed
+    </button>
+  </footer>
+
+  <ul id="filters" th:fragment="filters" class="filters">
+    <li>
+      <a
+        href="/"
+        class="menu-item"
+        th:classappend="${filter.name() == 'ALL'?'selected':''}"
+        hx-target="#todo-list"
+        hx-get="/"
+        hx-push-url="true"
+        hx-on:click="htmx.removeClass(htmx.find('.menu-item.selected'), 'selected'); htmx.addClass(this, 'selected');"
+        >All</a
+      >
+    </li>
+    <li>
+      <a
+        href="/active"
+        class="menu-item"
+        th:classappend="${filter.name() == 'ACTIVE'?'selected':''}"
+        hx-target="#todo-list"
+        hx-get="/active"
+        hx-push-url="true"
+        hx-on:click="htmx.removeClass(htmx.find('.menu-item.selected'), 'selected'); htmx.addClass(this, 'selected');"
+        >Active</a
+      >
+    </li>
+    <li>
+      <a
+        href="/completed"
+        class="menu-item"
+        th:classappend="${filter.name() == 'COMPLETED'?'selected':''}"
+        hx-target="#todo-list"
+        hx-get="/completed"
+        hx-push-url="true"
+        hx-trigger="click"
+        hx-on:click="htmx.removeClass(htmx.find('.menu-item.selected'), 'selected'); htmx.addClass(this, 'selected');"
+        >Completed</a
+      >
+    </li>
+  </ul>
+
+  <span
+    th:fragment="active-items-fragment"
+    id="active-items-fragment"
+    class="todo-count"
+    hx-get="/active-items-fragment"
+    hx-swap="outerHTML"
+    hx-trigger="itemsChanged from:body"
+  >
+    <th:block th:unless="${activeCount == 1}">
+      <span class="todo-count"
+        ><strong th:text="${activeCount}">0</strong> items left</span
+      >
+    </th:block>
+    <th:block th:if="${activeCount == 1}">
+      <span class="todo-count"><strong>1</strong> item left</span>
+    </th:block>
+  </span>
+</html>

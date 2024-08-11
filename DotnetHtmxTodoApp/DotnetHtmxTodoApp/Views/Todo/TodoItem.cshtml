@@ -1,0 +1,33 @@
+@model TodoItem
+<li
+    class="@(Model.IsCompleted ? "completed" : "")"
+    id="list-item-@Model.Id"
+>
+    <div class="view">
+        <input
+            id="@Model.Id"
+            class="toggle"
+            type="checkbox"
+            checked="@Model.IsCompleted"
+            hx-put="@Url.Action("Toggle", "Todo", new { id = Model.Id })"
+            hx-target="#list-item-@Model.Id"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+        />
+        <label
+            hx-on:dblclick="this.closest('li').classList.add('editing'); this.closest('li').querySelector('.edit').focus();"
+        >@Model.Title</label>
+        <button
+            class="destroy"
+            hx-delete="@Url.Action("Delete", "Todo", new { id = Model.Id })"
+            hx-target="#list-item-@Model.Id"
+            hx-trigger="click"
+            hx-swap="delete"
+        ></button>
+    </div>
+    <form hx-target="#list-item-@Model.Id"
+          hx-patch="@Url.Action("PatchTitle", "Todo", new { id = Model.Id })"
+          hx-swap="outerHTML">
+        <input name="title" class="edit" value="@Model.Title" />
+    </form>
+</li>
