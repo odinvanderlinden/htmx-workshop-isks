@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TodoItem>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="todoapp">
+    <header class="header">
+        <h1>todos</h1>
+        <form id="new-todo-form" asp-action="Add">
+            <input
+                id="new-todo-input"
+                class="new-todo"
+                placeholder="What needs to be done?"
+                autofocus
+                autocomplete="off"
+                name="title"/>
+            <input type="submit" hidden />
+        </form>
+        <section
+                id="main-section"
+                class="main"
+        >
+            <ul id="todo-list" class="todo-list">
+                @foreach (var item in Model)
+                {
+                    @(await @Html.PartialAsync("TodoItem", item))
+                }
+            </ul>
+        </section>
+    </header>
+</section>

@@ -1,0 +1,23 @@
+@model TodoItem
+<li
+    class="@(Model.IsCompleted ? "completed" : "")"
+    id="list-item-@Model.Id"
+>
+    <div class="view">
+        <form asp-action="Toggle">
+            <input
+                id="@Model.Id"
+                class="toggle"
+                type="submit"
+                checked="@Model.IsCompleted"
+                name="id"
+                value="@Model.Id"/>
+        <label>@Model.Title</label>
+        </form>
+        @* <button class="destroy" asp-action="Delete"></button> *@
+        @Html.ActionLink("", "Delete", "Todo", new { id = Model.Id }, new { @class = "destroy" })
+    </div>
+    <form>
+        <input name="title" class="edit" value="@Model.Title" />
+    </form>
+</li>
