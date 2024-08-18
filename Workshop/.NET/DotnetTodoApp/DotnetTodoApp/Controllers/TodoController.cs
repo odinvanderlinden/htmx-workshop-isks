@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DotnetTodoApp.Models;
-using Htmx;
 
 namespace DotnetTodoApp.Controllers;
 
