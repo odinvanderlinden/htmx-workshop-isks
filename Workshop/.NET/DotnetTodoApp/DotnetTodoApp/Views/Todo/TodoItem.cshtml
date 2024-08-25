@@ -17,7 +17,4 @@
         @* <button class="destroy" asp-action="Delete"></button> *@
         @Html.ActionLink("", "Delete", "Todo", new { id = Model.Id }, new { @class = "destroy" })
     </div>
-    <form>
-        <input name="title" class="edit" value="@Model.Title" />
-    </form>
 </li>
