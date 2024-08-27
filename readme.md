@@ -4,4 +4,4 @@ TODO
 
 - [x] .NET workshop
 - [ ] Java workshop
-- [ ] ISKS sauce
+- [x] ISKS sauce

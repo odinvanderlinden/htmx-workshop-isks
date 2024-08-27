@@ -11,9 +11,9 @@ public class TodoController : Controller
     
     private static readonly List<TodoItem> _todoItems = new()
     {
-        new TodoItem { Id = 1, Title = "Learn HTMX", IsCompleted = true },
-        new TodoItem { Id = 2, Title = "Build a Todo App", IsCompleted = false },
-        new TodoItem { Id = 3, Title = "Add HTMX to the Todo App", IsCompleted = false }
+        new TodoItem { Id = 1, Title = "Follow the serious business sessions", IsCompleted = true },
+        new TodoItem { Id = 2, Title = "Learn HTMX", IsCompleted = false },
+        new TodoItem { Id = 3, Title = "Learn something from the breakout sessions", IsCompleted = false }
     };
 
     public TodoController(ILogger<TodoController> logger)
@@ -25,16 +25,6 @@ public class TodoController : Controller
     {
         return View(_todoItems);
     }
-    
-    // [HttpGet("active")]
-    // public IActionResult GetActive() {
-    //     return viewIndexOrTodoItemsFragment(TodoFilter.Active);
-    // }
-    //
-    // [HttpGet("/completed")]
-    // public IActionResult GetCompleted() {
-    //     return viewIndexOrTodoItemsFragment(TodoFilter.Completed);
-    // }
 
     [HttpPut]
     public IActionResult Toggle(int id)

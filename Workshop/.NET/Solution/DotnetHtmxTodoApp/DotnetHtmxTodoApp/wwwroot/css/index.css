@@ -72,7 +72,7 @@ body {
 	font-size: 80px;
 	font-weight: 200;
 	text-align: center;
-	color: #b83f45;
+	color: #00A3E0;
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
@@ -388,6 +388,6 @@ html .clear-completed:active {
 :focus,
 .toggle:focus + label,
 .toggle-all:focus + label {
-	box-shadow: 0 0 2px 2px #CF7D7D;
+	box-shadow: 0 0 2px 2px #00A3E0;
 	outline: 0;
 }
