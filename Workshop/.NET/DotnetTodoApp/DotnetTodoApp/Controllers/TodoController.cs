@@ -7,19 +7,19 @@ namespace DotnetTodoApp.Controllers;
 public class TodoController : Controller
 {
     private readonly ILogger<TodoController> _logger;
-    
+
     private static readonly List<TodoItem> _todoItems = new()
     {
-        new TodoItem { Id = 1, Title = "Learn HTMX", IsCompleted = true },
-        new TodoItem { Id = 2, Title = "Build a Todo App", IsCompleted = false },
-        new TodoItem { Id = 3, Title = "Add HTMX to the Todo App", IsCompleted = false }
+        new TodoItem { Id = 1, Title = "Follow the serious business sessions", IsCompleted = true },
+        new TodoItem { Id = 2, Title = "Learn HTMX", IsCompleted = false },
+        new TodoItem { Id = 3, Title = "Learn something from the breakout sessions", IsCompleted = false }
     };
 
     public TodoController(ILogger<TodoController> logger)
     {
         _logger = logger;
     }
-    
+
     public IActionResult Index()
     {
         return View(_todoItems);
@@ -34,7 +34,7 @@ public class TodoController : Controller
         }
         return RedirectToAction("Index");
     }
-    
+
     public IActionResult Add(string title)
     {
         var todoItem = new TodoItem
@@ -46,7 +46,7 @@ public class TodoController : Controller
         _todoItems.Add(todoItem);
         return RedirectToAction("Index");
     }
-    
+
     public IActionResult Delete(int id)
     {
         _todoItems.RemoveAll(i => i.Id == id);
@@ -59,7 +59,8 @@ public class TodoController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public enum TodoFilter {
+    public enum TodoFilter
+    {
         All,
         Active,
         Completed
