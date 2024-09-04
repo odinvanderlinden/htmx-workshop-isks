@@ -1,69 +1,52 @@
 <!DOCTYPE html>
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org"
-  lang="en"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TodoMVC with Spring Boot</title>
-    <link rel="stylesheet" th:href="@{/webjars/todomvc-common/base.css}" />
-    <link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}" />
-  </head>
-  <body>
-    <section class="todoapp">
-      <header class="header">
-        <h1>todos</h1>
-        <form
-          id="new-todo-form"
-          th:action="@{/}"
-          method="post"
-          th:object="${newItem}"
-          hx-trigger="submit"
-          hx-post="/"
-          hx-target="#todo-list"
-          hx-swap="beforeend"
-          hx-on::after-request="this.reset()"
-        >
-          <input
-            id="new-todo-input"
-            class="new-todo"
-            placeholder="What needs to be done?"
-            autofocus
-            autocomplete="off"
-            name="title"
-            th:field="*{title}"
-          />
-        </form>
-      </header>
-      <!-- This section should be hidden by default and shown when there are todos -->
-      <section
-        id="main-section"
-        class="main"
-      >
-        <input id="toggle-all" class="toggle-all" type="submit" />
-        <label hx-target="#todo-list" hx-put="/toggle-all" for="toggle-all"
-          >Mark all as complete</label
-        >
-
-        <ul
-          th:insert="~{fragments :: todoItems(${items})}"
-          th:remove="tag"
-        ></ul>
-      </section>
-      <footer th:replace="fragments :: footer"></footer>
-    </section>
-    <footer class="info">
-      <p>Double-click to edit a todo</p>
-      <!-- Remove the below line ↓ -->
-      <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-      <!-- Change this out with your name and url ↓ -->
-      <p>Created by <a href="http://todomvc.com">you</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
-    <!-- Scripts here. Don't remove ↓ -->
-    <script th:src="@{/webjars/todomvc-common/base.js}"></script>
-    <script th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
-  </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>TodoMVC with Spring Boot</title>
+		<link rel="stylesheet" th:href="@{/webjars/todomvc-common/base.css}" />
+		<link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}" />
+	</head>
+	<body>
+		<section class="todoapp">
+			<header class="header">
+				<h1>todos</h1>
+				<form
+					id="new-todo-form"
+					th:action="@{/}"
+					method="post"
+					th:object="${newItem}"
+					hx-trigger="submit"
+					hx-post="/"
+					hx-target="#todo-list"
+					hx-swap="beforeend"
+					hx-on::after-request="this.reset()"
+				>
+					<input
+						id="new-todo-input"
+						class="new-todo"
+						placeholder="What needs to be done?"
+						autofocus
+						autocomplete="off"
+						name="title"
+						th:field="*{title}"
+					/>
+				</form>
+			</header>
+			<!-- This section should be hidden by default and shown when there are todos -->
+			<section id="main-section" class="main">
+				<ul th:insert="~{fragments :: todoItems(${items})}" th:remove="tag"></ul>
+			</section>
+		</section>
+		<footer class="info">
+			<p>Double-click to edit a todo</p>
+			<!-- Remove the below line ↓ -->
+			<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+			<!-- Change this out with your name and url ↓ -->
+			<p>Created by <a href="http://todomvc.com">you</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+		<!-- Scripts here. Don't remove ↓ -->
+		<script th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
+	</body>
 </html>
