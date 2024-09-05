@@ -1,0 +1,96 @@
+{
+	// Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	"fragment": {
+		"prefix": "fragment",
+		"body": [
+			"<!-- .element class=\"fragment\" -->$1"
+		],
+		"description": "Add a fragment for revealjs slides"
+	},
+	"fragmenti": {
+		"prefix": "ifragment",
+		"body": [
+			"<!-- .element class=\"fragment\" data-fragment-index=\"$1\" -->",
+			"$2"
+		],a
+	},
+	"target": {
+		"prefix": "target",
+		"body": [
+			"<!-- .element target=\"_blank\" -->$1"
+		],
+		"description": "Add a target=\"_blank\" to links"
+	},
+	"element": {
+		"prefix": "element",
+		"body": [
+			"<!-- .element class=\"$1\" -->$2",
+		],
+		"description": "Add a class to an element"
+	},
+	"flavor": {
+		"prefix": "flavor",
+		"body": [
+			"<!-- .element class=\"flavor-$1\" -->$2",
+		],
+		"description": "Add a class to an element"
+	},
+	"slide-class": {
+		"prefix": "slide-class",
+		"body": [
+			"<!-- .slide: class=\"$1\" -->$2",
+		],
+		"description": "Add a class to a reveal js markdown slide"
+	},
+	"slide-data": {
+		"prefix": "slide-data",
+		"body": [
+			"<!-- .slide: data-$1 -->$2",
+		],
+		"description": "Add data attribute to a revealjs markdown slide"
+	},
+	"module": {
+		"prefix": "slide-module",
+		"body": [
+			"<!-- .slide: class=\"is-module\" -->$1"
+		],
+		"description": "Add is-module class to the current revealjs markdown slide"
+	},
+	"lab": {
+		"prefix": "slide-lab",
+		"body": [
+			"<!-- .slide: data-background-iframe=\"/labs/$1.html\" data-background-interactive  -->$2"
+		],
+		"description": "Add interactive lab iframe to current markdown slide"
+	},
+	"prettier-ignore-start": {
+		"prefix": "pis",
+		"body": [
+			"<!-- prettier-ignore-start -->$1"
+		],
+		"description": "Start a prettier ignore block"
+	},
+	"prettier-ignore-end": {
+		"prefix": "pie",
+		"body": [
+			"<!-- prettier-ignore-end -->$1"
+		],
+		"description": "End a prettier ignore block"
+	},
+	"diagram-excalidraw": {
+		"prefix": "diagram-excalidraw",
+		"body": [
+			"![](../../img/$1.excalidraw.svg)$2"
+		],
+	},
+	"diagram-drawio": {
+		"prefix": "diagram-drawio",
+		"body": [
+			"![](../../img/$1.drawio.svg)$2"
+		],
+	}
+}

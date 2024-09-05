@@ -1,0 +1,7 @@
+pre {
+	break-inside: avoid;
+}
+
+.answer {
+	display: none !important;
+}

@@ -1,0 +1,39 @@
+.reveal *:not(pre) > code {
+	background-color: #efefef;
+}
+.reveal p {
+	margin-bottom: 5px;
+}
+
+/* ul/ol lists with result next to it */
+.html-example {
+	width: 200px;
+	box-shadow: 0 0 5px 3px black;
+	background: darkgray;
+	color: white;
+}
+
+.special {
+	background: lightgreen;
+}
+
+.special-list {
+	background: lightblue;
+}
+
+.kc-columns p, .kc-grid p, .kc-flex p {
+	margin: 0;
+}
+
+.pos-color1 {
+	background: lightpink;
+}
+.pos-color2 {
+	background: lightgoldenrodyellow;
+}
+.pos-color3 {
+	background: lightblue;
+}
+.pos-color4 {
+	background: lightgreen;
+}
